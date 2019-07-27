@@ -1,0 +1,64 @@
+DROP DATABASE cibersite;
+
+CREATE DATABASE IF NOT EXISTS cibersite;
+
+USE cibersite;
+
+CREATE TABLE streams
+(
+  streams_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  streams_titel VARCHAR(100),
+  streams_name VARCHAR(100),
+  streams_refVideo VARCHAR(100),
+  streams_refImage VARCHAR(100),
+  streams_data VARCHAR(12)
+);
+
+CREATE TABLE video
+(
+  video_id INT PRIMARY  KEY NOT NULL AUTO_INCREMENT,
+  video_titel VARCHAR(100),
+  video_name VARCHAR(100),
+  video_refVideo VARCHAR(100),
+  video_refImage VARCHAR(100),
+  video_data VARCHAR(12)
+);
+
+
+
+
+CREATE TABLE  news 
+(
+  news_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  news_titel VARCHAR(100),
+  news_content VARCHAR(1024),
+  news_refImage VARCHAR(100),
+  news_date VARCHAR(12)
+
+);
+
+
+CREATE TABLE games
+(
+  games_id  INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  
+  games_numberVisitDota         INT(30) DEFAULT 0,
+  games_numberVisitParagon         INT(30) DEFAULT 0,
+  games_numberVisitCs         INT(30) DEFAULT 0,
+  games_numberVisitWOT         INT(30) DEFAULT 0
+ 
+
+);
+
+
+CREATE TABLE user
+(
+  user_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  user_nick VARCHAR(30) NOT NULL,
+  user_email VARCHAR(30) NOT NULL,
+  user_password VARCHAR(30) NOT NULL UNIQUE,
+  user_country VARCHAR(30) NOT NULL,
+  fk_games_id Int NOT NULL UNIQUE Key,
+  FOREIGN KEY (fk_games_id) REFERENCES games (games_id) ON UPDATE CASCADE ON DELETE CASCADE
+  
+);

@@ -1,0 +1,15 @@
+Index: src/main/webapp/WEB-INF/dispatcher-servlet.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/webapp/WEB-INF/dispatcher-servlet.xml	(revision 6ad3efd27ae082072ca5e97c1acb4729073ed7fe)
++++ src/main/webapp/WEB-INF/dispatcher-servlet.xml	(revision )
+@@ -22,6 +22,7 @@
+     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+         <property name="url" value="jdbc:mysql://localhost:3306/cibersite" />
++
+         <property name="username" value="root" />
+         <property name="password" value="root" />
+     </bean>
