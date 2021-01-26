@@ -3,24 +3,18 @@ package by.usovich.dao;
 /**
  * Created by yanus on 7/14/2017.
  */
-import by.usovich.entity.UserEntity;
 
-import java.util.*;
-public interface UserDaoInterface {
+import java.util.List;
 
-     boolean isLoginExists(String login);
+public interface UserDaoInterface extends CRUDofEntitiesInterface {
 
-     boolean isEmailExists(String email);
+    boolean isLoginExists(String login);
 
-     boolean isPassword(String password);
+    boolean isEmailExists(String email);
 
-     List getUserEntityByLogin(String login);
+    boolean isPassword(String password);
 
-    void createUser(UserEntity userEntity);
-
-    void deleteUser(UserEntity userEntity);
-
-    void updateUser(UserEntity userEntity);
+    List getUserEntityByLogin(String login);
 
     Integer getVisitSite();
 

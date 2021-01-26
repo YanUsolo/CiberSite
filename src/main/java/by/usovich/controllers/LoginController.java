@@ -7,7 +7,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
 
@@ -27,49 +29,46 @@ public class LoginController {
     public UserServiseInterface userServiseImp;
 
 
-    @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public String getPageLogin(HttpSession session, @ModelAttribute("userDto") LoginDto userDto){
+    @RequestMapping(value = "/DeadLine_war_exploded/login", method = RequestMethod.GET)
+    public String getPageLogin(HttpSession session, @ModelAttribute("userDto") LoginDto userDto) {
 
-        LoginDto userDtoTipoFromBD = new LoginDto("SoLo@gmail.com","SoLo","www");
+        LoginDto userDtoTipoFromBD = new LoginDto("SoLo@gmail.com", "SoLo", "www");
 
 
-       // validator.validate(UserDto,result);
+        // validator.validate(UserDto,result);
 
-        if(false){
+        if (false) {
             return "login";
-        }else{
+        } else {
 
-            if(true) {//Поиск user from BD ПО логину
+            if (true) {//Поиск user from BD ПО логину
 
-                if(true) {//Проверка на пароль
+                if (true) {//Проверка на пароль
 
-                }
-                else{
+                } else {
                     //ToDo
                     //Неверный пароль
                 }
-            }
-            else{
+            } else {
                 //ToDo
                 //Неверный логин
             }
         }
 
 
-
         return "login";
     }
 
 
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public String Login(@ModelAttribute("loginDto") LoginDto userDto, HttpSession session,Model model){
+    @RequestMapping(value = "/DeadLine_war_exploded/login", method = RequestMethod.POST)
+    public String Login(@ModelAttribute("loginDto") LoginDto userDto, HttpSession session, Model model) {
 
 
         System.out.println("\n" + userDto.getEmail() + "   " + userDto.getNick() + "   " + userDto.getPassword() + "   ");
 
-        if(userServiseImp.isLoginExists(userDto.getNick() +"") && userServiseImp.isPasswordExists(userDto.getPassword())){
-            session.setAttribute("isExist",true);
-            session.setAttribute("login",userDto.getNick());
+        if (userServiseImp.isLoginExists(userDto.getNick() + "") && userServiseImp.isPasswordExists(userDto.getPassword())) {
+            session.setAttribute("isExist", true);
+            session.setAttribute("login", userDto.getNick());
             System.out.println("------------------" + userDto.getNick());
             return "redirect:main-page-wot";
         }

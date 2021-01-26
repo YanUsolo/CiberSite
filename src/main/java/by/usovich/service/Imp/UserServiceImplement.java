@@ -9,7 +9,8 @@ import by.usovich.service.UserServiseInterface;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.*;
+
+import java.util.List;
 
 /**
  * Created by yanus on 7/11/2017.
@@ -17,7 +18,7 @@ import java.util.*;
 @Service
 public class UserServiceImplement implements UserServiseInterface {
 
-    public  Logger log = Logger.getLogger(UserServiceImplement.class);
+    public Logger log = Logger.getLogger(UserServiceImplement.class);
 
     @Autowired
     public UserDaoInterface userDaoImp;
@@ -25,48 +26,48 @@ public class UserServiceImplement implements UserServiseInterface {
     @Override
     public Integer getVisitTheSite() {
 
-
-        return  userDaoImp.getVisitSite();
+        //   return  userDaoImp.getVisitSite();
+        return 1;
     }
 
     @Override
     public void incrementJoinInTheGame(String loginUser, String titelGame) {
 
-        UserEntity userEntity = (UserEntity)userDaoImp.getUserEntityByLogin(loginUser).get(0);
+        UserEntity userEntity = (UserEntity) userDaoImp.getUserEntityByLogin(loginUser).get(0);
 
         GamesEntity gamesEntity = userEntity.getGamesEntity();
 
-        switch (titelGame){
+        switch (titelGame) {
 
             case "cs":
-                gamesEntity.setNumberVisitCs(gamesEntity.getNumberVisitCs()+1);
+                gamesEntity.setNumberVisitCs(gamesEntity.getNumberVisitCs() + 1);
                 break;
             case "wot":
-                gamesEntity.setNumberVisitWOT(gamesEntity.getNumberVisitWOT()+1);
+                gamesEntity.setNumberVisitWOT(gamesEntity.getNumberVisitWOT() + 1);
                 break;
             case "paragon":
-                gamesEntity.setNumberVisitParagon(gamesEntity.getNumberVisitParagon()+1);
+                gamesEntity.setNumberVisitParagon(gamesEntity.getNumberVisitParagon() + 1);
                 break;
             case "dota":
-                gamesEntity.setNumberVisitDota(gamesEntity.getNumberVisitDota()+1);
+                gamesEntity.setNumberVisitDota(gamesEntity.getNumberVisitDota() + 1);
                 break;
 
         }
 
         userEntity.setGamesEntity(gamesEntity);
 
-        userDaoImp.updateUser(userEntity);
+        userDaoImp.updateEntity(userEntity);
 
-       // System.out.println(userEntity.getGamesEntity() + "");
+        // System.out.println(userEntity.getGamesEntity() + "");
     }
 
-    public boolean isLoginExists(String login){
+    public boolean isLoginExists(String login) {
 
-        if(userDaoImp.getUserEntityByLogin(login).size() > 0){
+        if (userDaoImp.getUserEntityByLogin(login).size() > 0) {
             log.info("Login :" + login + " is in the BD");
             System.out.println("" + (userDaoImp.getUserEntityByLogin(login).toString()));
             return true;
-        }else {
+        } else {
             log.info("Login :" + login + " is NOT in the BD");
             return false;
         }
@@ -76,10 +77,10 @@ public class UserServiceImplement implements UserServiseInterface {
 
     public boolean isEmailExists(String email) {
 
-        if(userDaoImp.isEmailExists(email)){
+        if (userDaoImp.isEmailExists(email)) {
             log.info("Email :" + email + " is in the BD");
             return true;
-        }else {
+        } else {
             log.info("Email :" + email + " is NOT in the BD");
             return false;
         }
@@ -88,10 +89,10 @@ public class UserServiceImplement implements UserServiseInterface {
 
     public boolean isPasswordExists(String password) {
 
-        if(userDaoImp.isPassword(password)){
+        if (userDaoImp.isPassword(password)) {
             log.info("Password :" + password + " is in the BD");
             return true;
-        }else {
+        } else {
             log.info("Password :" + password + " is NOT in the BD");
             return false;
         }
@@ -101,28 +102,27 @@ public class UserServiceImplement implements UserServiseInterface {
     @Override
     public void deleteUser(UserDto userDto) {
 
-       UserEntity userEntityFromBD = (UserEntity) userDaoImp.getUserEntityByLogin(userDto.getLogin()).get(0);
+        UserEntity userEntityFromBD = (UserEntity) userDaoImp.getUserEntityByLogin(userDto.getLogin()).get(0);
 
-       userDaoImp.deleteUser(userEntityFromBD);
+        userDaoImp.deleteEntity(userEntityFromBD);
 
     }
 
     private boolean hadleListFromBD(List list) {
-        if(!(list == null)){
+        if (!(list == null)) {
             log.info("Find Entity in BD");
             return true;
-        }else{
+        } else {
             log.info("Not Find Entity in BD");
             return false;
         }
     }
 
 
-
     @Override
     public void createUser(RegDto regDto) {
 
-        UserEntity userEntity  = new UserEntity();
+        UserEntity userEntity = new UserEntity();
 
         userEntity.set_login(regDto.getLogin());
         userEntity.set_password(regDto.getPassword());
@@ -134,13 +134,12 @@ public class UserServiceImplement implements UserServiseInterface {
 
         userEntity.setGamesEntity(gamesEntity);
 
-       // userDaoImp.createGames(gamesEntity);
+        // userDaoImp.createGames(gamesEntity);
 
-        userDaoImp.createUser(userEntity);
+        userDaoImp.createEntity(userEntity);
 
 
-}
-
+    }
 
 
 }

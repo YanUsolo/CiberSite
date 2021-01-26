@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
@@ -21,22 +20,22 @@ public class TourneyController {
 
     public TourneyServiceInterface tourneyServiceImp;
 
-    @RequestMapping(value = "/getTourney",method = RequestMethod.GET)
+    @RequestMapping(value = "/getTourney", method = RequestMethod.GET)
     public @ResponseBody
-    String getTourney(HttpSession session,Model model){
+    String getTourney(HttpSession session, Model model) {
 
         //int numInt = 10;
         String numStr = "4";
 
         String titel = "dota";
 
-        Map<String,TourneyDto> response = null;
+        Map<String, TourneyDto> response = null;
 
         //ToDo
 
 
-    //    String string = newsServiceImp.getNewsAtNameGame(titel,numStr).getJsonArray().toString();//for debbug
+        //    String string = newsServiceImp.getNewsAtNameGame(titel,numStr).getJsonArray().toString();//for debbug
 
-        return tourneyServiceImp.getTourneyAtNameGame(titel,numStr).getMap().toString();
+        return tourneyServiceImp.getTourneyAtNameGame(titel, numStr).getMap().toString();
     }
 }

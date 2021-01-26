@@ -3,24 +3,20 @@ package by.usovich.dao.IMP;
 import by.usovich.dao.TourneyDaoInterface;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
  * Created by yansolo on 19.05.2018.
  */
 @Repository("tourneyDaoImp")
+//@Transactional
 @Transactional(noRollbackFor = Exception.class)
-public class TourneyDaoImplements implements TourneyDaoInterface {
+public class TourneyDaoImplements extends CRUDofEntitiesImp implements TourneyDaoInterface {
 
     public Logger log = Logger.getLogger(TourneyDaoImplements.class);
-
-    @Resource(name = "sessionFactory")
-    public SessionFactory sessionFactory;
 
     public List getTourneyAtTitel(String titel) {
 

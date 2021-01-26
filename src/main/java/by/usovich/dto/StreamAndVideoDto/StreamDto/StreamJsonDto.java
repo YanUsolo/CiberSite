@@ -17,10 +17,9 @@ public class StreamJsonDto {
 
 
     int counter = 0;
-    Map<String,Map> Map = new LinkedHashMap<String, Map>();
+    Map<String, Map> Map = new LinkedHashMap<String, Map>();
 
     JSONArray jsonArray = new JSONArray();
-
 
 
     public Map<String, Map> getMap() {
@@ -32,14 +31,14 @@ public class StreamJsonDto {
         return jsonArray;
     }
 
-    public void putStream(StreamDto news){
+    public void putStream(StreamDto news) {
 
         putPostInMap(news);
-    //    putPostInJson(news);
+        //    putPostInJson(news);
 
     }
 
-    public void putPostInMap (StreamDto post){
+    public void putPostInMap(StreamDto post) {
 
         try {
             Map<String, String> map = new LinkedHashMap<String, String>();
@@ -50,8 +49,8 @@ public class StreamJsonDto {
             map.put("RefImage", post.get_refImage());
             map.put("Date", post.get_data());
 
-            Map.put(counter + "",map);
-        }catch (Exception E){
+            Map.put(counter + "", map);
+        } catch (Exception E) {
 
             System.out.println("Errro in Dto(Post) : problem with parse object to json");
 
@@ -60,20 +59,20 @@ public class StreamJsonDto {
         counter++;
     }
 
-    public void putPostInJson (StreamDto post){
+    public void putPostInJson(StreamDto post) {
         try {
             // jsonObject.put("Id", counter + "");
             JSONObject jsonObject = new JSONObject();
 
-            jsonObject.put("Title",post.get_titel());
-            jsonObject.put("Name",post.get_name());
-            jsonObject.put("RefVideo",post.get_refVideo());
-            jsonObject.put("RefImage",post.get_refImage());
-            jsonObject.put("Data",post.get_data());
+            jsonObject.put("Title", post.get_titel());
+            jsonObject.put("Name", post.get_name());
+            jsonObject.put("RefVideo", post.get_refVideo());
+            jsonObject.put("RefImage", post.get_refImage());
+            jsonObject.put("Data", post.get_data());
 
             jsonArray.put(jsonObject);
 
-        }catch (JSONException E){
+        } catch (JSONException E) {
 
             System.out.println("Errro in Dto(Post) : problem with parse object to json");
 

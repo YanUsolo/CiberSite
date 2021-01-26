@@ -8,7 +8,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "streams")
-public class StreamEntity implements Serializable{
+public class StreamEntity implements Serializable {
 
     @Id
     @Column(name = "streams_id")

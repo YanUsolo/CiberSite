@@ -10,5 +10,5 @@ public interface StreamServiceInterface {
 
     public StreamJsonDto getStreamAtNameGame(String nameTheme, String numberOfPosts);
 
-   // public StreamJsonDto getStreamAtNameGame(String nameTheme, String numberOfPosts, String displayedOfPosts);
+    // public StreamJsonDto getStreamAtNameGame(String nameTheme, String numberOfPosts, String displayedOfPosts);
 }

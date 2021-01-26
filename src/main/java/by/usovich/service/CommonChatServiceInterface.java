@@ -7,7 +7,7 @@ public interface CommonChatServiceInterface {
 
     String getLastMessage(String nick);
 
-    String setMessage(String nick,String content);
+    String setMessage(String nick, String content);
 
     String getLastMessages();
 }

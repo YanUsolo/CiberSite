@@ -1,9 +1,13 @@
 package by.usovich.dto.NewsDto;
 
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import java.util.*;
-import org.json.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 /**
  * Created by yanus on 6/17/2017.
  */
@@ -14,10 +18,9 @@ public class NewsJsonDto {
 
 
     int counter = 0;
-    Map<String,NewsDto> map = new LinkedHashMap<String, NewsDto>();
+    Map<String, NewsDto> map = new LinkedHashMap<String, NewsDto>();
 
     JSONArray jsonArray = new JSONArray();
-
 
 
     public Map<String, NewsDto> getMap() {
@@ -29,59 +32,59 @@ public class NewsJsonDto {
         return jsonArray;
     }
 
-    public void putPost(NewsDto post){
+    public void putPost(NewsDto post) {
 
         putNewsInMap(post);
         putPostInJson(post);
 
     }
 
-    public void putNewsInMap(NewsDto post){
+    public void putNewsInMap(NewsDto post) {
 
 
-        map.put(counter + "",post);
+        map.put(counter + "", post);
         counter++;
     }
 
-    public void putPostInJson (NewsDto post){
-        try {
-           // jsonObject.put("Id", counter + "");
-            JSONObject jsonObject = new JSONObject();
-
-            jsonObject.put("Title",post.get_titel());
-            jsonObject.put("Content",post.get_content());
-            jsonObject.put("Name",post.get_name());
-            jsonObject.put("NewsId",post.get_newsId());
-            jsonObject.put("PublishDate",post.get_date());
-            jsonObject.put("Image",post.get_image());
-
-            jsonArray.put(jsonObject);
-
-        }catch (JSONException E){
-
-            System.out.println("Errro in Dto(Post) : problem with parse object to json");
-
-        }
-      //  map.put(counter + "",post);
-        counter++;
-    }
-
-    public void putPostInJsonForViewPage (NewsDto post){
+    public void putPostInJson(NewsDto post) {
         try {
             // jsonObject.put("Id", counter + "");
             JSONObject jsonObject = new JSONObject();
 
-            jsonObject.put("id",post.get_id());
-            jsonObject.put("titel",post.get_titel());
-            jsonObject.put("any",post.get_content());
-            jsonObject.put("anyKey","Content");
-            jsonObject.put("name",post.get_name());
-            jsonObject.put("date",post.get_date());
-            jsonObject.put("Image",post.get_image());
+            jsonObject.put("Title", post.get_titel());
+            jsonObject.put("Content", post.get_content());
+            jsonObject.put("Name", post.get_name());
+            jsonObject.put("NewsId", post.get_newsId());
+            jsonObject.put("PublishDate", post.get_date());
+            jsonObject.put("Image", post.get_image());
 
             jsonArray.put(jsonObject);
 
-        }catch (JSONException E){
+        } catch (JSONException E) {
+
+            System.out.println("Errro in Dto(Post) : problem with parse object to json");
+
+        }
+        //  map.put(counter + "",post);
+        counter++;
+    }
+
+    public void putPostInJsonForViewPage(NewsDto post) {
+        try {
+            // jsonObject.put("Id", counter + "");
+            JSONObject jsonObject = new JSONObject();
+
+            jsonObject.put("id", post.get_id());
+            jsonObject.put("titel", post.get_titel());
+            jsonObject.put("any", post.get_content());
+            jsonObject.put("anyKey", "Content");
+            jsonObject.put("name", post.get_name());
+            jsonObject.put("date", post.get_date());
+            jsonObject.put("Image", post.get_image());
+
+            jsonArray.put(jsonObject);
+
+        } catch (JSONException E) {
 
             System.out.println("Errro in Dto(Post) : problem with parse object to json");
 

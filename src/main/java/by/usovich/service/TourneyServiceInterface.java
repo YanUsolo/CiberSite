@@ -1,7 +1,5 @@
 package by.usovich.service;
 
-import by.usovich.dto.NewsDto.NewsJsonDto;
-import by.usovich.dto.TourneyDto;
 import by.usovich.dto.TourneyJsonDto;
 
 /**

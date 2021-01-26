@@ -25,10 +25,10 @@ public class SreamsVideoNewsCreatorServiceImlement implements SreamsVideoNewsCre
     @Override
     public boolean setVideoOrStream(CreateStreamAndVideoDto videoAndStreamDto) {
 
-        if(!(videoAndStreamDto.getName().equals(null) && videoAndStreamDto.getName().equals(null)
-                && videoAndStreamDto.getName().equals(null))){
+        if (!(videoAndStreamDto.getName().equals(null) && videoAndStreamDto.getName().equals(null)
+                && videoAndStreamDto.getName().equals(null))) {
 
-            if(videoAndStreamDto.getType().equals("video")){
+            if (videoAndStreamDto.getType().equals("video")) {
 
                 VideoEntity videoEntity = new VideoEntity();
 
@@ -38,12 +38,12 @@ public class SreamsVideoNewsCreatorServiceImlement implements SreamsVideoNewsCre
                 videoEntity.set_refImage(videoAndStreamDto.getRefImage());
                 videoEntity.set_data("---------");
 
-                videoDaoInterface.createVideo(videoEntity);
+                videoDaoInterface.createEntity(videoEntity);
 
                 return true;
 
             }
-            if(videoAndStreamDto.getType().equals("stream")){
+            if (videoAndStreamDto.getType().equals("stream")) {
 
                 StreamEntity streamEntity = new StreamEntity();
 
@@ -53,7 +53,7 @@ public class SreamsVideoNewsCreatorServiceImlement implements SreamsVideoNewsCre
                 streamEntity.set_refImage(videoAndStreamDto.getRefImage());
                 streamEntity.set_data("---------");
 
-                streamsDaoInterface.createStream(streamEntity);
+                streamsDaoInterface.createEntity(streamEntity);
 
                 return true;
             }

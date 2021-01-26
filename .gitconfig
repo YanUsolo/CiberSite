@@ -4,8 +4,10 @@
 	required = true
 	clean = git-lfs clean -- %f
 [user]
-	name = EzzO123
+	name = YanUSoLo
 [user]
-	email = dr.watsontroll@gmail.com
+	email = yannusovich@gmail.com
 [core]
 	excludesfile = ~/.gitexcludes
+	excludesfile = ~/.gitignore
+

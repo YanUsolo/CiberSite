@@ -11,10 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
-import java.util.*;
 import java.util.LinkedList;
-
-
+import java.util.List;
 
 
 /**
@@ -26,21 +24,22 @@ public class NewsServiceImplement implements NewsServiceInterface {
     @Autowired
     NewsDaoInterface newsDaoImp;
 
+
     public boolean setVideoOrStream(CreateNewsDto createNewsDto) {
 
-        if(!(createNewsDto.getContent().equals(null) && createNewsDto.getRefImage().equals(null)
-                && createNewsDto.getTitel().equals(null))){
+        if (!(createNewsDto.getContent().equals(null) && createNewsDto.getRefImage().equals(null)
+                && createNewsDto.getTitel().equals(null))) {
 
-                NewsEntity newsEntity = new NewsEntity();
+            NewsEntity newsEntity = new NewsEntity();
 
             newsEntity.set_titel(getNameTablePost(createNewsDto.getTitel()));
             newsEntity.set_content(createNewsDto.getContent());
             newsEntity.set_image(createNewsDto.getRefImage());
             newsEntity.set_date("---------");
 
-            newsDaoImp.createNews(newsEntity);
+            newsDaoImp.createEntity(newsEntity);
 
-                return true;
+            return true;
         }
 
         return false;
@@ -49,19 +48,17 @@ public class NewsServiceImplement implements NewsServiceInterface {
     @Override
     public boolean deleteNews(int id) {
 
-        NewsEntity newsEntity =newsDaoImp.getNewsById(id);
+        NewsEntity newsEntity = newsDaoImp.getNewsById(id);
 
-        if(!(newsEntity == null)){
+        if (!(newsEntity == null)) {
 
-            newsDaoImp.deleteNews(newsEntity);
+            newsDaoImp.deleteEntity(newsEntity);
             return true;
         }
 
         return false;
     }
 
-    @Autowired
-    public NewsDaoInterface PostDaoImp;
 
     private static final Logger log = Logger.getLogger(NewsServiceImplement.class);
 
@@ -79,7 +76,7 @@ public class NewsServiceImplement implements NewsServiceInterface {
         } else {
 
             List postsEntity = null;//список постов для парса в Map(Controller)
-            postsEntity = PostDaoImp.getNewsAtTitel(getNameTablePost(nameTheme));
+            postsEntity = newsDaoImp.getNewsAtTitel(getNameTablePost(nameTheme));
 
             if (postsEntity.size() == 0) {
 
@@ -114,7 +111,7 @@ public class NewsServiceImplement implements NewsServiceInterface {
     public NewsJsonDto getNewsAtNameGame(String nameTheme) {
         NewsJsonDto postsJsonDto = new NewsJsonDto();
 
-     //if (getNameTablePost(nameTheme).equals("")) {
+        //if (getNameTablePost(nameTheme).equals("")) {
 
         if (getNameTablePost(getTitelFromTheme(nameTheme)).equals("")) {
             //Debbug
@@ -123,7 +120,7 @@ public class NewsServiceImplement implements NewsServiceInterface {
         } else {
 
             List postsEntity = null;//список постов для парса в Map(Controller)
-            postsEntity = PostDaoImp.getNewsAtTitel(getNameTablePost(getTitelFromTheme(nameTheme)));
+            postsEntity = newsDaoImp.getNewsAtTitel(getNameTablePost(getTitelFromTheme(nameTheme)));
 
             if (postsEntity.size() == 0) {
 
@@ -172,26 +169,25 @@ public class NewsServiceImplement implements NewsServiceInterface {
     }
 
 
-
     @Override
-    public NewsJsonDto getNewsAtNameGame(String nameTheme, String newsDeriction,String numberOfPosts, HttpSession session) {//получение множества постов
+    public NewsJsonDto getNewsAtNameGame(String nameTheme, String newsDeriction, String numberOfPosts, HttpSession session) {//получение множества постов
 
 
         String titel = getTitelFromTheme(nameTheme);
 
-        int displayedNews = correctNewsDeriction(newsDeriction,(int)session.getAttribute("indexNews"));
+        int displayedNews = correctNewsDeriction(newsDeriction, (int) session.getAttribute("indexNews"));
 
         int numberPosts = Integer.parseInt(numberOfPosts);
 
         NewsJsonDto newsJsonDto = new NewsJsonDto();
 
-        if(!getNameTablePost(titel).equals("")){
+        if (!getNameTablePost(titel).equals("")) {
 
             //Debbug
             log.info("True");
 
             List newsEntity = null;//список постов для парса в Map(Controller)
-            newsEntity = PostDaoImp.getNewsAtTitel(getNameTablePost(titel));
+            newsEntity = newsDaoImp.getNewsAtTitel(getNameTablePost(titel));
 
             if (newsEntity.size() == 0) {
 
@@ -205,12 +201,12 @@ public class NewsServiceImplement implements NewsServiceInterface {
                         ((displayedNews == 0) && (displayedNews + 3 <= newsEntity.size()))) {
 
                     getLastNews(displayedNews, newsEntity, newsJsonDto);
-                    session.setAttribute("indexNews",displayedNews);
+                    session.setAttribute("indexNews", displayedNews);
 
                 } else {
 
                     getLastNews(displayedNews - 3, newsEntity, newsJsonDto);
-                    session.setAttribute("indexNews",displayedNews-3);
+                    session.setAttribute("indexNews", displayedNews - 3);
 
                 }
             }
@@ -265,39 +261,38 @@ public class NewsServiceImplement implements NewsServiceInterface {
     }
 
     //Получение из PostEntity в PostJson
-    private NewsDto getPostEntityInPostDto(NewsEntity postEntity){
+    private NewsDto getPostEntityInPostDto(NewsEntity postEntity) {
 
-        if(false){
+        if (false) {
             return null;
-        }else{
-            return new NewsDto(postEntity.get_id() + "",postEntity.get_titel(),postEntity.get_content(),postEntity.get_name(),
-                    postEntity.get_date(),postEntity.get_image(),postEntity.get_id() +"","");
+        } else {
+            return new NewsDto(postEntity.get_id() + "", postEntity.get_titel(), postEntity.get_content(), postEntity.get_name(),
+                    postEntity.get_date(), postEntity.get_image(), postEntity.get_id() + "", "");
         }
 
     }
 
-   public boolean setNewsInBD(CreateNewsDto createNewsDto){
-       if(!(createNewsDto.getName().equals(null) && createNewsDto.getName().equals(null)
-               && createNewsDto.getName().equals(null))){
+    public boolean setNewsInBD(CreateNewsDto createNewsDto) {
+        if (!(createNewsDto.getName().equals(null) && createNewsDto.getName().equals(null)
+                && createNewsDto.getName().equals(null))) {
 
-               NewsEntity newsEntity = new NewsEntity();
+            NewsEntity newsEntity = new NewsEntity();
 
-               newsEntity.set_titel(getNameTablePost(createNewsDto.getTitel()));
-               newsEntity.set_content(createNewsDto.getContent());
-               newsEntity.set_name(createNewsDto.getName());
-               newsEntity.set_image(createNewsDto.getRefImage());
-               newsEntity.set_date("---------");
+            newsEntity.set_titel(getNameTablePost(createNewsDto.getTitel()));
+            newsEntity.set_content(createNewsDto.getContent());
+            newsEntity.set_name(createNewsDto.getName());
+            newsEntity.set_image(createNewsDto.getRefImage());
+            newsEntity.set_date("---------");
 
-               newsDaoImp.createNews(newsEntity);
+            newsDaoImp.createEntity(newsEntity);
 
-               return true;
+            return true;
 
-       }
+        }
 
 
         return false;
-   }
-
+    }
 
 
     public void addJson(NewsDto post, LinkedList<NewsDto> posts) {

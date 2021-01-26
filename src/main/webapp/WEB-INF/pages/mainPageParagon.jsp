@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="by.usovich.service.Imp.NewsServiceImplement" %>
-<%@ page import="by.usovich.dto.NewsDto.NewsDto" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: yanus
   Date: 10.05.2017
@@ -12,7 +11,7 @@
 <head>
     <title>Paragon</title>
 
-    <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/" />
+    <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/"/>
 
     <script src="http://code.jquery.com/jquery-1.9.0.min.js"
             type="text/javascript"></script>

@@ -8,7 +8,7 @@ import by.usovich.dto.StreamAndVideoDto.VideoDto.VideoJsonDto;
  */
 public interface VideoServiceInterface {
 
-    public VideoJsonDto getVideoAtNameGame(int countView,String nameTheme, String numberOfPosts);
+    public VideoJsonDto getVideoAtNameGame(int countView, String nameTheme, String numberOfPosts);
 
-   // public VideoJsonDto getVideoAtNameGame(String nameTheme, String numberOfPosts, String displayedOfPosts);
+    // public VideoJsonDto getVideoAtNameGame(String nameTheme, String numberOfPosts, String displayedOfPosts);
 }

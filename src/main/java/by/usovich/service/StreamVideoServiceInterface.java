@@ -13,11 +13,11 @@ public interface StreamVideoServiceInterface {
 
     VideoJsonDto getVideoAtNameGame(int countView, String nameTheme, String numberOfPosts);
 
-    StreamJsonDto getStreamAtNameGame(int countView ,String nameTheme, String numberOfPosts);
+    StreamJsonDto getStreamAtNameGame(int countView, String nameTheme, String numberOfPosts);
 
     VideoJsonDto getVideoAtNameGame(String nameTheme);
 
     StreamJsonDto getStreamAtNameGame(String nameTheme);
 
-    boolean deleteStreamVideo(String type,int id);
+    boolean deleteStreamVideo(String type, int id);
 }

@@ -7,15 +7,8 @@ import java.io.Serializable;
  * Created by yanus on 7/23/2017.
  */
 @Entity
-@Table(name = "games")
-public class GamesEntity implements Serializable  {
-
-
-   // @OneToOne(cascade = CascadeType.ALL)
-  //  @JoinColumn(name = "fk_user_id")
-
-
-  //  @OneToOne(cascade = CascadeType.ALL, mappedBy = "games")
+@Table(name = "games", schema = "cibersite")
+public class GamesEntity implements Serializable {
 
     @Id
     @Column(name = "games_id")
@@ -32,33 +25,27 @@ public class GamesEntity implements Serializable  {
     private int numberVisitCs;
 
     @Column(name = "games_numberVisitWOT")
-    private int numberVisitWOT ;
+    private int numberVisitWOT;
 
     @OneToOne(mappedBy = "gamesEntity")
     private UserEntity userEntity;
-
-    public UserEntity getUserEntity() {
-        return userEntity;
-    }
-
-    public void setUserEntity(UserEntity userEntity) {
-        this.userEntity = userEntity;
-    }
 
     public GamesEntity(int numberVisitDota, int numberVisitParagon, int numberVisitCs, int numberVisitWOT) {
         this.numberVisitDota = numberVisitDota;
         this.numberVisitParagon = numberVisitParagon;
         this.numberVisitCs = numberVisitCs;
         this.numberVisitWOT = numberVisitWOT;
-      //  this.userEntity = userEntity;
+    }
+
+    public GamesEntity(int numberVisitDota, int numberVisitParagon, int numberVisitCs, int numberVisitWOT, UserEntity userEntity) {
+        this.numberVisitDota = numberVisitDota;
+        this.numberVisitParagon = numberVisitParagon;
+        this.numberVisitCs = numberVisitCs;
+        this.numberVisitWOT = numberVisitWOT;
+        this.userEntity = userEntity;
     }
 
     public GamesEntity() {
-        this.numberVisitDota = 0;
-        this.numberVisitParagon = 0;
-        this.numberVisitCs = 0;
-        this.numberVisitWOT = 0;
-
     }
 
     public int get_id() {
@@ -101,5 +88,11 @@ public class GamesEntity implements Serializable  {
         this.numberVisitWOT = numberVisitWOT;
     }
 
+    public UserEntity getUserEntity() {
+        return userEntity;
+    }
 
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
+    }
 }

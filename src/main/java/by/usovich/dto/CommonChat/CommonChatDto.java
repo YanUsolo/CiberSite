@@ -14,23 +14,23 @@ public class CommonChatDto {
     }
 
     int counter = 0;
-    Map<String,NewsDto> map = new LinkedHashMap<String, NewsDto>();
+    Map<String, NewsDto> map = new LinkedHashMap<String, NewsDto>();
 
     public Map<String, NewsDto> getMap() {
 
         return map;
     }
 
-    public void putMessage(NewsDto post){
+    public void putMessage(NewsDto post) {
 
         putNewsInMap(post);
 
     }
 
-    public void putNewsInMap(NewsDto post){
+    public void putNewsInMap(NewsDto post) {
 
 
-        map.put(counter + "",post);
+        map.put(counter + "", post);
         counter++;
     }
 }

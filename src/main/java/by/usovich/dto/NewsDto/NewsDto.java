@@ -3,8 +3,6 @@ package by.usovich.dto.NewsDto;
 //import org.json.simple.JSONObject;
 
 
-import java.util.Date;
-
 /**
  * Created by yanus on 15.05.2017.
  */
@@ -27,7 +25,7 @@ public class NewsDto {
     private String _image;
 
 
-    public NewsDto(String titel, String content,String name, String date, String image,String newsId) {
+    public NewsDto(String titel, String content, String name, String date, String image, String newsId) {
         this._titel = titel;
         this._content = content;
         this._name = name;
@@ -36,7 +34,7 @@ public class NewsDto {
         this._image = image;
     }
 
-    public NewsDto(String id,String titel, String content,String name, String date, String image,String newsId,String person) {
+    public NewsDto(String id, String titel, String content, String name, String date, String image, String newsId, String person) {
         this._id = id;
         this._titel = titel;
         this._content = content;
@@ -79,7 +77,9 @@ public class NewsDto {
         this._image = _image;
     }
 
-    public String get_newsId() {return _newsId;}
+    public String get_newsId() {
+        return _newsId;
+    }
 
     public void set_newsId(String _newsId) {
         this._newsId = _newsId;

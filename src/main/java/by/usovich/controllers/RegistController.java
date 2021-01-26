@@ -6,7 +6,6 @@ import by.usovich.service.UserServiseInterface;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,14 +24,14 @@ public class RegistController {
     @Autowired
     public UserServiseInterface userServiseImp;
 
-    @RequestMapping( value = "/reg" , method = RequestMethod.GET)
-    public String getPageReg(HttpSession session){
+    @RequestMapping(value = "/DeadLine_war_exploded/reg", method = RequestMethod.GET)
+    public String getPageReg(HttpSession session) {
 
         return "regis";
     }
 
-    @RequestMapping( value = "/reg" , method = RequestMethod.POST)
-    public String Reg(HttpSession session,@ModelAttribute("regDto") RegDto regDto){
+    @RequestMapping(value = "/DeadLine_war_exploded/reg", method = RequestMethod.POST)
+    public String Reg(HttpSession session, @ModelAttribute("regDto") RegDto regDto) {
 
         //System.out.println("\n" + regDto.getNick() + "\n" + regDto.getEmail() + "\n"  + regDto.getPassword() + "\n" + regDto.getRepassword() + "\n");
 
@@ -49,7 +48,7 @@ public class RegistController {
 
         userServiseImp.createUser(regDto);
 
-        //userServiseImp.deleteUser(regDto);
+        //userServiseImp.deleteEntity(regDto);
 
 //        if(!userServiseImp.isLoginExists(regDto.getLogin())){
 //

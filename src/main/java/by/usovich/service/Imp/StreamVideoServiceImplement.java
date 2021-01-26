@@ -36,28 +36,28 @@ public class StreamVideoServiceImplement implements StreamVideoServiceInterface 
 
         VideoJsonDto videoJsonDto = new VideoJsonDto();
 
-        if(getNameTablePost(nameTheme).equals("")){
+        if (getNameTablePost(nameTheme).equals("")) {
 
             //Debbug
 
 
-        }else {
+        } else {
 
             List videoEntity = null;//список постов для парса в Map(Controller)
             videoEntity = videoDaoImp.getVideoAtTitel(getNameTablePost(nameTheme));
 
-            if((videoEntity.size() == 0) || videoEntity == null){
+            if ((videoEntity.size() == 0) || videoEntity == null) {
 
                 log.error("Сущность не получена(VideoEntity)");
 
                 //желательно пустой объект
                 return null;
 
-            }else{
+            } else {
 
                 log.info("Сущность получена");
 
-                getLastVideo(countView,videoEntity,videoJsonDto);
+                getLastVideo(countView, videoEntity, videoJsonDto);
 
             }
         }
@@ -68,21 +68,21 @@ public class StreamVideoServiceImplement implements StreamVideoServiceInterface 
     @Override
     public boolean deleteStreamVideo(String type, int id) {
 
-        switch (type){
+        switch (type) {
             case "video":
-                VideoEntity videoEntity =videoDaoImp.getVideoById(id);
+                VideoEntity videoEntity = videoDaoImp.getVideoById(id);
 
-                if(!(videoEntity == null)){
+                if (!(videoEntity == null)) {
 
-                    videoDaoImp.deleteVideo(videoEntity);
+                    videoDaoImp.deleteEntity(videoEntity);
                     return true;
                 }
             case "stream":
-                StreamEntity streamEntity =streamDaoImp.getStreamById(id);
+                StreamEntity streamEntity = streamDaoImp.getStreamById(id);
 
-                if(!(streamEntity == null)){
+                if (!(streamEntity == null)) {
 
-                    streamDaoImp.deleteStream(streamEntity);
+                    streamDaoImp.deleteEntity(streamEntity);
                     return true;
                 }
         }
@@ -103,48 +103,46 @@ public class StreamVideoServiceImplement implements StreamVideoServiceInterface 
     }
 
 
-    private VideoDto getPostEntityInPostDto(VideoEntity videoEntity){
+    private VideoDto getPostEntityInPostDto(VideoEntity videoEntity) {
 
-        if(false){
+        if (false) {
             return null;
-        }else{
-            return new VideoDto(videoEntity.get_id() +"",videoEntity.get_titel(),videoEntity.get_name(),
-                    videoEntity.get_refVideo(),videoEntity.get_refImage(),videoEntity.get_data());
+        } else {
+            return new VideoDto(videoEntity.get_id() + "", videoEntity.get_titel(), videoEntity.get_name(),
+                    videoEntity.get_refVideo(), videoEntity.get_refImage(), videoEntity.get_data());
         }
 
     }
 
 
-
-    public StreamJsonDto getStreamAtNameGame(int countView,String nameTheme, String numberOfPosts) {//получение множества последних постов
+    public StreamJsonDto getStreamAtNameGame(int countView, String nameTheme, String numberOfPosts) {//получение множества последних постов
 
         int numberPosts = Integer.parseInt(numberOfPosts);
 
         StreamJsonDto streamJsonDto = new StreamJsonDto();
 
-        if(getNameTablePost(nameTheme).equals("")){
+        if (getNameTablePost(nameTheme).equals("")) {
 
             //Debbug
 
-        }else {
+        } else {
 
             List streamEntity = null;//список постов для парса в Map(Controller)
-            streamEntity = streamDaoImp.getStreamAtTitel(getNameTablePost(nameTheme));
+            streamEntity = streamDaoImp.getStreamAtTitle(getNameTablePost(nameTheme));
 
-            if(streamEntity.size() == 0){
+            if (streamEntity.size() == 0) {
 
                 log.error("Сущность не получена(StreamEntity)");
 
-            }else{
+            } else {
 
-                getLastStreams(countView,streamEntity,streamJsonDto);
+                getLastStreams(countView, streamEntity, streamJsonDto);
                 log.info("Сущность получена");
             }
         }
 
         return streamJsonDto;//DAO
     }
-
 
 
     @Override
@@ -155,18 +153,18 @@ public class StreamVideoServiceImplement implements StreamVideoServiceInterface 
 
             //Debbug
 
-        }else {
+        } else {
 
             List videoEntity = null;//список постов для парса в Map(Controller)
             videoEntity = videoDaoImp.getVideoAtTitel(getNameTablePost(getTitelFromTheme(nameTheme)));
 
-            if(videoEntity.size() == 0){
+            if (videoEntity.size() == 0) {
 
                 log.error("Сущность не получена(StreamEntity)");
 
-            }else{
+            } else {
 
-                for (int temp = 0; videoEntity.size()  > temp; temp++) {//получение последних постов добавленных в БД
+                for (int temp = 0; videoEntity.size() > temp; temp++) {//получение последних постов добавленных в БД
 
                     int sizeList = videoEntity.size();
 
@@ -190,18 +188,18 @@ public class StreamVideoServiceImplement implements StreamVideoServiceInterface 
 
             //Debbug
 
-        }else {
+        } else {
 
             List streamEntity = null;//список постов для парса в Map(Controller)
-            streamEntity = streamDaoImp.getStreamAtTitel(getNameTablePost(getTitelFromTheme(nameTheme)));
+            streamEntity = streamDaoImp.getStreamAtTitle(getNameTablePost(getTitelFromTheme(nameTheme)));
 
-            if(streamEntity.size() == 0){
+            if (streamEntity.size() == 0) {
 
                 log.error("Сущность не получена(StreamEntity)");
 
-            }else{
+            } else {
 
-                for (int temp = 0; streamEntity.size()  > temp; temp++) {//получение последних постов добавленных в БД
+                for (int temp = 0; streamEntity.size() > temp; temp++) {//получение последних постов добавленных в БД
 
                     int sizeList = streamEntity.size();
 
@@ -219,7 +217,7 @@ public class StreamVideoServiceImplement implements StreamVideoServiceInterface 
     private void getLastStreams(int viewCount, List streamEntity, StreamJsonDto streamJsonDto) {//получение последних постов добавленных в БД
 
 
-        for (int temp = 0; viewCount  > temp; temp++) {//получение последних постов добавленных в БД
+        for (int temp = 0; viewCount > temp; temp++) {//получение последних постов добавленных в БД
 
             int sizeList = streamEntity.size();
 
@@ -230,13 +228,13 @@ public class StreamVideoServiceImplement implements StreamVideoServiceInterface 
 
     }
 
-    private StreamDto getPostEntityInPostDto(StreamEntity streamEntity){
+    private StreamDto getPostEntityInPostDto(StreamEntity streamEntity) {
 
-        if(false){
+        if (false) {
             return null;
-        }else{
-            return new StreamDto(streamEntity.get_id() + "",streamEntity.get_titel(),streamEntity.get_name(),
-                    streamEntity.get_refVideo(),streamEntity.get_refImage(),streamEntity.get_data());
+        } else {
+            return new StreamDto(streamEntity.get_id() + "", streamEntity.get_titel(), streamEntity.get_name(),
+                    streamEntity.get_refVideo(), streamEntity.get_refImage(), streamEntity.get_data());
         }
 
     }
@@ -244,10 +242,10 @@ public class StreamVideoServiceImplement implements StreamVideoServiceInterface 
     @Override
     public boolean setVideoOrStream(CreateStreamAndVideoDto videoAndStreamDto) {
 
-        if(!(videoAndStreamDto.getName().equals(null) && videoAndStreamDto.getName().equals(null)
-                && videoAndStreamDto.getName().equals(null))){
+        if (!(videoAndStreamDto.getName().equals(null) && videoAndStreamDto.getName().equals(null)
+                && videoAndStreamDto.getName().equals(null))) {
 
-            if(videoAndStreamDto.getType().equals("video")){
+            if (videoAndStreamDto.getType().equals("video")) {
 
                 VideoEntity videoEntity = new VideoEntity();
 
@@ -257,12 +255,12 @@ public class StreamVideoServiceImplement implements StreamVideoServiceInterface 
                 videoEntity.set_refImage(videoAndStreamDto.getRefImage());
                 videoEntity.set_data("---------");
 
-                videoDaoImp.createVideo(videoEntity);
+                videoDaoImp.createEntity(videoEntity);
 
                 return true;
 
             }
-            if(videoAndStreamDto.getType().equals("stream")){
+            if (videoAndStreamDto.getType().equals("stream")) {
 
                 StreamEntity streamEntity = new StreamEntity();
 
@@ -272,7 +270,7 @@ public class StreamVideoServiceImplement implements StreamVideoServiceInterface 
                 streamEntity.set_refImage(videoAndStreamDto.getRefImage());
                 streamEntity.set_data("---------");
 
-                streamDaoImp.createStream(streamEntity);
+                streamDaoImp.createEntity(streamEntity);
 
                 return true;
             }
@@ -281,7 +279,6 @@ public class StreamVideoServiceImplement implements StreamVideoServiceInterface 
 
         return false;
     }
-
 
 
     private String getNameTablePost(String nameGame) {

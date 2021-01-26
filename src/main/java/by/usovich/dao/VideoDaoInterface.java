@@ -7,13 +7,10 @@ import java.util.List;
 /**
  * Created by yanus on 8/19/2017.
  */
-public interface VideoDaoInterface {
+public interface VideoDaoInterface extends CRUDofEntitiesInterface {
 
     List getVideoAtTitel(String nameGameTable);
 
-    void createVideo(VideoEntity videoEntity);
-
-    void deleteVideo(VideoEntity videoEntity);
-
     VideoEntity getVideoById(int id);
+
 }

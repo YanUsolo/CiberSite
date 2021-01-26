@@ -19,7 +19,7 @@ public class StreamServiceImplement implements StreamServiceInterface {
 
 
     @Autowired
-    public StreamsDaoInterface PostDaoImp;
+    public StreamsDaoInterface streamsDaoImp;
 
     private static final Logger log = Logger.getLogger(StreamServiceImplement.class);
 
@@ -29,25 +29,25 @@ public class StreamServiceImplement implements StreamServiceInterface {
 
         StreamJsonDto streamJsonDto = new StreamJsonDto();
 
-        if(getNameTablePost(nameTheme).equals("")){
+        if (getNameTablePost(nameTheme).equals("")) {
 
             //Debbug
 
-        }else {
+        } else {
 
             List streamEntity = null;//список постов для парса в Map(Controller)
-            streamEntity = PostDaoImp.getStreamAtTitel(getNameTablePost(nameTheme));
+            streamEntity = streamsDaoImp.getStreamAtTitle(getNameTablePost(nameTheme));
 
-            if(streamEntity.size() == 0){
+            if (streamEntity.size() == 0) {
 
                 log.error("Сущность не получена(StreamEntity)");
 
-            }else{
+            } else {
 
-                getLastNews(0,streamEntity,streamJsonDto);
+                getLastNews(0, streamEntity, streamJsonDto);
                 log.info("Сущность получена");
-                }
             }
+        }
 
         return streamJsonDto;//DAO
     }
@@ -67,13 +67,13 @@ public class StreamServiceImplement implements StreamServiceInterface {
 
     }
 
-    private StreamDto getPostEntityInPostDto(StreamEntity streamEntity){
+    private StreamDto getPostEntityInPostDto(StreamEntity streamEntity) {
 
-        if(false){
+        if (false) {
             return null;
-        }else{
-            return new StreamDto(streamEntity.get_titel(),streamEntity.get_name(),
-                    streamEntity.get_refVideo(),streamEntity.get_refImage(),streamEntity.get_data());
+        } else {
+            return new StreamDto(streamEntity.get_titel(), streamEntity.get_name(),
+                    streamEntity.get_refVideo(), streamEntity.get_refImage(), streamEntity.get_data());
         }
 
     }

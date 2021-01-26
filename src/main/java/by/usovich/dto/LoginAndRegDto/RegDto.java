@@ -3,8 +3,10 @@ package by.usovich.dto.LoginAndRegDto;
 /**
  * Created by yanus on 7/13/2017.
  */
-import java.util.Map;
+
 import java.util.HashMap;
+import java.util.Map;
+
 public class RegDto {
 
     private String login;
@@ -13,15 +15,15 @@ public class RegDto {
     private String repassword;
     private String country;
 
-    private Map games =  new HashMap<String,String>();
+    private Map games = new HashMap<String, String>();
 
 
-    public RegDto(){
+    public RegDto() {
 
-        games.put("dota",0 + "");
-        games.put("cs",0 + "");
-        games.put("paragon",0 + "");
-        games.put("wot",0 + "");
+        games.put("dota", 0 + "");
+        games.put("cs", 0 + "");
+        games.put("paragon", 0 + "");
+        games.put("wot", 0 + "");
 
     }
 
@@ -72,12 +74,15 @@ public class RegDto {
     }
 
 
+    public String getCountry() {
+        return country;
+    }
 
-    public String getCountry() {return country;}
+    public void setCountry(String country) {
+        this.country = country;
+    }
 
-    public void setCountry(String country) {this.country = country;}
-
-    public String toStringForGames(){
+    public String toStringForGames() {
 
         return games.toString();
 

@@ -2,7 +2,6 @@ package by.usovich.service.Imp;
 
 
 import by.usovich.dao.VideoDaoInterface;
-
 import by.usovich.dto.StreamAndVideoDto.VideoDto.VideoDto;
 import by.usovich.dto.StreamAndVideoDto.VideoDto.VideoJsonDto;
 import by.usovich.entity.VideoEntity;
@@ -24,34 +23,34 @@ public class VideoServiceImplement implements VideoServiceInterface {
 
     private static final Logger log = Logger.getLogger(StreamServiceImplement.class);
 
-    public VideoJsonDto getVideoAtNameGame(int countView,String nameTheme, String numberOfPosts) {//получение множества последних постов
+    public VideoJsonDto getVideoAtNameGame(int countView, String nameTheme, String numberOfPosts) {//получение множества последних постов
 
         int numberPosts = Integer.parseInt(numberOfPosts);
 
         VideoJsonDto videoJsonDto = new VideoJsonDto();
 
-        if(getNameTablePost(nameTheme).equals("")){
+        if (getNameTablePost(nameTheme).equals("")) {
 
             //Debbug
 
 
-        }else {
+        } else {
 
             List videoEntity = null;//список постов для парса в Map(Controller)
             videoEntity = PostDaoImp.getVideoAtTitel(getNameTablePost(nameTheme));
 
-            if((videoEntity.size() == 0) || videoEntity == null){
+            if ((videoEntity.size() == 0) || videoEntity == null) {
 
                 log.error("Сущность не получена(VideoEntity)");
 
                 //желательно пустой объект
                 return null;
 
-            }else{
+            } else {
 
                 log.info("Сущность получена");
 
-                getLastVideo(countView,videoEntity,videoJsonDto);
+                getLastVideo(countView, videoEntity, videoJsonDto);
 
             }
         }
@@ -71,13 +70,13 @@ public class VideoServiceImplement implements VideoServiceInterface {
         }
     }
 
-    private VideoDto getPostEntityInPostDto(VideoEntity videoEntity){
+    private VideoDto getPostEntityInPostDto(VideoEntity videoEntity) {
 
-        if(false){
+        if (false) {
             return null;
-        }else{
-            return new VideoDto(videoEntity.get_titel(),videoEntity.get_name(),
-                    videoEntity.get_refVideo(),videoEntity.get_refImage(),videoEntity.get_data());
+        } else {
+            return new VideoDto(videoEntity.get_titel(), videoEntity.get_name(),
+                    videoEntity.get_refVideo(), videoEntity.get_refImage(), videoEntity.get_data());
         }
 
     }

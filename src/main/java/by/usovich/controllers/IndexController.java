@@ -1,11 +1,9 @@
 package by.usovich.controllers;
 
 import by.usovich.dto.StreamAndVideoDto.CreateStreamAndVideoDto;
-import by.usovich.dto.NewsDto.CreateNewsDto;
-import by.usovich.service.*;
 import by.usovich.service.Imp.SreamsVideoNewsCreatorServiceImlement;
+import by.usovich.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -27,8 +25,6 @@ public class IndexController {
     @Autowired
     public StreamVideoServiceInterface streamVideoServiceImp;
 
-    @Autowired
-    public TourneyServiceInterface tourneyServiceImp;
 
     @Autowired
     public NewsServiceInterface newsServiceImp;
@@ -41,40 +37,23 @@ public class IndexController {
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String getNewPage(HttpSession session, Model model) {
-
-
-        if (session.getAttribute("isExist") == null) {
-            model.addAttribute("isExist", false);
-            session.setAttribute("isExist", false);
-
-        }
-
-        userServiseImp.isLoginExists("YanSoLo");
-
+        SetNotExistsIfSessionIsNull(session, model);
 
         return "index";
-        // return "index";
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String emptyUrl(HttpSession session, Model model) {
+        userServiseImp.getVisitTheSite();
 
+        SetNotExistsIfSessionIsNull(session, model);
 
-       userServiseImp.getVisitTheSite();
-        if (session.getAttribute("isExist") == null) {
-            model.addAttribute("isExist", false);
-            session.setAttribute("isExist", false);
-            System.out.println("fmgokdmfgokmdohmdogmh");
-        }
-
-        userServiseImp.isLoginExists("YanSoLo");
         return "index";
     }
 
 
-    @RequestMapping(value = "main-page-wot", method = RequestMethod.GET)
+    @RequestMapping(value = "/main-page-wot", method = RequestMethod.GET)
     public String getMainPageWot(HttpSession session, Model model) {
-
         String number = "8";
 
         String titel = "wot";
@@ -83,23 +62,16 @@ public class IndexController {
 
         model.addAttribute("Stream", streamVideoServiceImp.getStreamAtNameGame(8, titel, number).getMap());
 
-        model.addAttribute("Tourney", tourneyServiceImp.getTourneyAtNameGame(titel, number).getMap());
-
-        System.out.println(streamVideoServiceImp.getVideoAtNameGame(8, titel, number).getMap().toString());
-
-        System.out.println(tourneyServiceImp.getTourneyAtNameGame(titel, number).getMap().toString());
-
         session.getAttribute("login");
 
         if (!(session.getAttribute("login") == null)) {
-
             userServiseImp.incrementJoinInTheGame(session.getAttribute("login") + "", "wot");
         }
 
         return "mainPageWot";
     }
 
-    @RequestMapping(value = "main-page-cs", method = RequestMethod.GET)
+    @RequestMapping(value = "/main-page-cs", method = RequestMethod.GET)
     public String getMainPageDota(HttpSession session, Model model) {
 
         String number = "8";
@@ -110,11 +82,8 @@ public class IndexController {
 
         model.addAttribute("Stream", streamVideoServiceImp.getStreamAtNameGame(8, titel, number).getMap());
 
-        model.addAttribute("Tourney", tourneyServiceImp.getTourneyAtNameGame(titel, number).getMap());
-
         System.out.println(streamVideoServiceImp.getVideoAtNameGame(8, titel, number).getMap().toString());
 
-        System.out.println(tourneyServiceImp.getTourneyAtNameGame(titel, number).getMap().toString());
 
         if (!(session.getAttribute("login") == null)) {
 
@@ -124,7 +93,7 @@ public class IndexController {
         return "mainPageCs";
     }
 
-    @RequestMapping(value = "main-page-paragon", method = RequestMethod.GET)
+    @RequestMapping(value = "/main-page-paragon", method = RequestMethod.GET)
     public String getMainPageCs(HttpSession session) {
 
         if (!(session.getAttribute("login") == null)) {
@@ -134,7 +103,7 @@ public class IndexController {
         return "mainPageParagon";
     }
 
-    @RequestMapping(value = "main-page-dota", method = RequestMethod.GET)
+    @RequestMapping(value = "/main-page-dota", method = RequestMethod.GET)
     public String getMainPageParagon(HttpSession session) {
 
         if (!(session.getAttribute("login") == null)) {
@@ -147,9 +116,7 @@ public class IndexController {
 
 
     @RequestMapping(value = "/createSteamOrVideoPage", method = RequestMethod.GET)
-    public String getCreateStreanAndVideoPage(HttpSession session) {
-
-        System.out.println("Get page for create Stream and Video");
+    public String getCreateStreamAndVideoPage(HttpSession session) {
         return "createStreamsAndVideo";
     }
 
@@ -162,16 +129,11 @@ public class IndexController {
 
     @RequestMapping(value = "/deletePostsPage", method = RequestMethod.GET)
     public String getDeletePostsPage(HttpSession session) {
-
-        System.out.println("Get page for delete Posts");
         return "deletePosts";
     }
 
     @RequestMapping(value = "/getViewPage", method = RequestMethod.GET)
     public String getViewPage(HttpSession session, Model model) {
-
-        System.out.println("Get page for view all data");
-
         String titel = "wot";
 
         //   model.addAttribute("news",   newsServiceImp.getNewsAtNameGame(titel).getMap());
@@ -182,31 +144,12 @@ public class IndexController {
 
         //   model.addAttribute("tourney",   tourneyServiceImp.getTourneyAtNameGame(titel).getMap());
 
-
         return "viewPage";
     }
 
 
     @RequestMapping(value = "/createSteamOrVideo", method = RequestMethod.POST)
-    public String setCreateStreanAndVideo(HttpSession session,
-                                          @ModelAttribute("createVideoAndStreamDto") CreateStreamAndVideoDto createVideoAndStreamDto) {
-
-        System.out.println("Well done");
-
-        System.out.println("Type :" + createVideoAndStreamDto.getType());
-
-        System.out.println("Titel :" + createVideoAndStreamDto.getTitel());
-
-        System.out.println("Name :" + createVideoAndStreamDto.getName());
-
-        System.out.println("refImage :" + createVideoAndStreamDto.getRefImage());
-
-        System.out.println("refVideo :" + createVideoAndStreamDto.getRefVideo());
-
-        System.out.println("Date :" + createVideoAndStreamDto.getDate());
-
-        System.out.println(sreamsVideoNewsCreatorServiceImlement.setVideoOrStream(createVideoAndStreamDto) + "Good!!!");
-
+    public String setCreateStreamAndVideo(HttpSession session, @ModelAttribute("createVideoAndStreamDto") CreateStreamAndVideoDto createVideoAndStreamDto) {
         return "createStreamsAndVideo";
     }
 
@@ -215,14 +158,6 @@ public class IndexController {
     public String setDeletePost(HttpSession session,
                                 @RequestParam(name = "type") String type,
                                 @RequestParam(name = "id") int id) {
-
-        System.out.println("Well done");
-
-        System.out.println("Type : " + type);
-
-        System.out.println("Id : " + type);
-
-
         switch (type) {
             case "news":
                 newsServiceImp.deleteNews(id);
@@ -237,26 +172,16 @@ public class IndexController {
                 System.out.println("Don't have type");
         }
 
-
         return "deletePosts";
     }
 
 
     @RequestMapping(value = "/getPostForView", method = RequestMethod.POST, produces = "application/json")
     public @ResponseBody
-    String getPostsForTitelAndTableGET(HttpSession session,
+    String getPostsForTitleAndTableGET(HttpSession session,
                                        @RequestParam(name = "titel") String titel,
                                        @RequestParam(name = "table") String table) {
-
-        System.out.println("Well done");
-        System.out.println("titel" + titel);
-        System.out.println("table" + table);
-
         String string = "";
-
-        if (table.equals("news")) {
-
-        }
 
         switch (table) {
             case "news":
@@ -268,14 +193,18 @@ public class IndexController {
             case "stream":
                 string = streamVideoServiceImp.getStreamAtNameGame(titel).getJsonArray().toString();
                 break;
-            case "tourney":
-                string = tourneyServiceImp.getTourneyAtNameGame(titel).getJsonArray().toString();
-                break;
         }
 
-        System.out.println("Json : " + string);
         return string;
     }
 
+    //todo
+    private void SetNotExistsIfSessionIsNull(HttpSession session, Model model) {
+        if (session.getAttribute("isExist") == null) {
+            model.addAttribute("isExist", false);
+            session.setAttribute("isExist", false);
+        }
 
+        userServiseImp.isLoginExists("YanSoLo");
+    }
 }

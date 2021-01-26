@@ -17,10 +17,9 @@ public class TourneyJsonDto {
 
 
     int counter = 0;
-    Map<String,Map>  Map = new LinkedHashMap<String, Map>();
+    Map<String, Map> Map = new LinkedHashMap<String, Map>();
 
-   JSONArray jsonArray = new JSONArray();
-
+    JSONArray jsonArray = new JSONArray();
 
 
     public Map<String, Map> getMap() {
@@ -32,14 +31,14 @@ public class TourneyJsonDto {
         return jsonArray;
     }
 
-    public void putPost(TourneyDto post){
+    public void putPost(TourneyDto post) {
 
         putNewsInMap(post);
-      //  putPostInJson(post);
+        //  putPostInJson(post);
 
     }
 
-    public void putNewsInMap(TourneyDto post){
+    public void putNewsInMap(TourneyDto post) {
 
         try {
             Map<String, String> map = new LinkedHashMap<String, String>();
@@ -50,8 +49,8 @@ public class TourneyJsonDto {
             map.put("RefImage", post.getImgLogo());
             map.put("Date", post.getDate());
 
-            Map.put(counter + "",map);
-        }catch (Exception E){
+            Map.put(counter + "", map);
+        } catch (Exception E) {
 
             System.out.println("Errro in Dto(Post) : problem with parse object to json");
 
@@ -59,22 +58,22 @@ public class TourneyJsonDto {
         counter++;
     }
 
-    public void putPostInJsonForViewPage (TourneyDto post){
+    public void putPostInJsonForViewPage(TourneyDto post) {
         try {
             // jsonObject.put("Id", counter + "");
             JSONObject jsonObject = new JSONObject();
 
-            jsonObject.put("id",post.getId());
-            jsonObject.put("titel",post.getTitel());
-            jsonObject.put("any",post.getFund());
-            jsonObject.put("anyKey","Fund");
-            jsonObject.put("name",post.getName());
-            jsonObject.put("date",post.getDate());
-            jsonObject.put("Image",post.getImgLogo());
+            jsonObject.put("id", post.getId());
+            jsonObject.put("titel", post.getTitel());
+            jsonObject.put("any", post.getFund());
+            jsonObject.put("anyKey", "Fund");
+            jsonObject.put("name", post.getName());
+            jsonObject.put("date", post.getDate());
+            jsonObject.put("Image", post.getImgLogo());
 
             jsonArray.put(jsonObject);
 
-        }catch (JSONException E){
+        } catch (JSONException E) {
 
             System.out.println("Errro in Dto(Post) : problem with parse object to json");
 

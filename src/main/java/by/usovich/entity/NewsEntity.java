@@ -2,14 +2,13 @@ package by.usovich.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by yanus on 15.05.2017.
  */
 
 @Entity
-@Table(name = "news")
+@Table(name = "news", schema = "cibersite", catalog = "")
 public class NewsEntity implements Serializable {
 
 
@@ -34,6 +33,11 @@ public class NewsEntity implements Serializable {
 
     @Column(name = "news_refImage")
     private String _image;
+    private int newsId;
+    private String newsTitel;
+    private String newsContent;
+    private String newsRefImage;
+    private String newsDate;
 
     public int get_id() {
         return _id;
@@ -82,6 +86,7 @@ public class NewsEntity implements Serializable {
     public void set_image(String _image) {
         this._image = _image;
     }
+
 
 }
 

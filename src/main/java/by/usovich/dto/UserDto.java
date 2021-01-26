@@ -13,19 +13,20 @@ public class UserDto {
 
     private String country;
 
-    private Map<String, String> games =  new HashMap<String,String>();
+    private Map<String, String> games = new HashMap<String, String>();
 
-    public UserDto(){}
+    public UserDto() {
+    }
 
     public UserDto(String nick, String email, String password, String repassword, String country) {
         this.login = nick;
         this.email = email;
         this.country = country;
 
-        games.put("dota",0 + "");
-        games.put("cs",0 + "");
-        games.put("paragon",0 + "");
-        games.put("wot",0 + "");
+        games.put("dota", 0 + "");
+        games.put("cs", 0 + "");
+        games.put("paragon", 0 + "");
+        games.put("wot", 0 + "");
     }
 
     public String getLogin() {
@@ -53,7 +54,7 @@ public class UserDto {
     }
 
     public void setGame(Map<String, String> games) {
-         this.games = games;
+        this.games = games;
     }
 
     public String getGame(String key) {

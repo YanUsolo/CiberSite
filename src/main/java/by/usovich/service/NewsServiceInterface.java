@@ -14,7 +14,7 @@ public interface NewsServiceInterface {
 
     NewsJsonDto getNewsAtNameGame(String nameTheme);
 
-    NewsJsonDto getNewsAtNameGame(String nameTheme,String newsDeriction, String numberOfPosts, HttpSession session);
+    NewsJsonDto getNewsAtNameGame(String nameTheme, String newsDeriction, String numberOfPosts, HttpSession session);
 
     boolean setNewsInBD(CreateNewsDto createNewsDto);
 
