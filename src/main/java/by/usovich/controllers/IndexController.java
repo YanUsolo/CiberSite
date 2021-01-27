@@ -54,13 +54,13 @@ public class IndexController {
 
     @RequestMapping(value = "/main-page-wot", method = RequestMethod.GET)
     public String getMainPageWot(HttpSession session, Model model) {
-        String number = "8";
+        String number = "2";
 
         String titel = "wot";
 
-        model.addAttribute("Video", streamVideoServiceImp.getVideoAtNameGame(8, titel, number).getMap());
+        model.addAttribute("Video", streamVideoServiceImp.getVideoAtNameGame(2, titel, number).getMap());
 
-        model.addAttribute("Stream", streamVideoServiceImp.getStreamAtNameGame(8, titel, number).getMap());
+        model.addAttribute("Stream", streamVideoServiceImp.getStreamAtNameGame(2, titel, number).getMap());
 
         session.getAttribute("login");
 
@@ -74,16 +74,13 @@ public class IndexController {
     @RequestMapping(value = "/main-page-cs", method = RequestMethod.GET)
     public String getMainPageDota(HttpSession session, Model model) {
 
-        String number = "8";
+        String number = "2";
 
         String titel = "cs";
 
-        model.addAttribute("Video", streamVideoServiceImp.getVideoAtNameGame(8, titel, number).getMap());
+        model.addAttribute("Video", streamVideoServiceImp.getVideoAtNameGame(2, titel, number).getMap());
 
-        model.addAttribute("Stream", streamVideoServiceImp.getStreamAtNameGame(8, titel, number).getMap());
-
-        System.out.println(streamVideoServiceImp.getVideoAtNameGame(8, titel, number).getMap().toString());
-
+        model.addAttribute("Stream", streamVideoServiceImp.getStreamAtNameGame(2, titel, number).getMap());
 
         if (!(session.getAttribute("login") == null)) {
 

@@ -25,7 +25,7 @@ public class TourneyController {
     String getTourney(HttpSession session, Model model) {
 
         //int numInt = 10;
-        String numStr = "4";
+        String numStr = "2";
 
         String titel = "dota";
 

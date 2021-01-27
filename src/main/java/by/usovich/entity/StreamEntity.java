@@ -77,4 +77,7 @@ public class StreamEntity implements Serializable {
     public void set_data(String _data) {
         this._data = _data;
     }
+
+    public StreamEntity() {
+    }
 }

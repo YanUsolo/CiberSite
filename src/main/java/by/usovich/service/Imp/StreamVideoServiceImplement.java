@@ -46,7 +46,7 @@ public class StreamVideoServiceImplement implements StreamVideoServiceInterface 
             List videoEntity = null;//список постов для парса в Map(Controller)
             videoEntity = videoDaoImp.getVideoAtTitel(getNameTablePost(nameTheme));
 
-            if ((videoEntity.size() == 0) || videoEntity == null) {
+            if (videoEntity == null) {
 
                 log.error("Сущность не получена(VideoEntity)");
 
@@ -284,16 +284,20 @@ public class StreamVideoServiceImplement implements StreamVideoServiceInterface 
     private String getNameTablePost(String nameGame) {
 
         if (nameGame.equals("paragon")) {
-            return "tablePARAGON";
+//            return "tablePARAGON";
+            return "paragon";
         }
         if (nameGame.equals("cs")) {
-            return "tableCS";
+//            return "tableCS";
+            return "cs";
         }
         if (nameGame.equals("dota")) {
-            return "tableDOTA";
+//            return "tableDOTA";
+            return "dota";
         }
         if (nameGame.equals("wot")) {
-            return "tableWOT";
+//            return "tableWOT";
+            return "wot";
         }
 
         return "";

@@ -85,16 +85,20 @@ public class VideoServiceImplement implements VideoServiceInterface {
     private String getNameTablePost(String nameGame) {
 
         if (nameGame.equals("paragon")) {
-            return "tablePARAGON";
+//            return "tablePARAGON";
+            return "paragon";
         }
         if (nameGame.equals("cs")) {
-            return "tableCS";
+//            return "tableCS";
+            return "cs";
         }
         if (nameGame.equals("dota")) {
-            return "tableDOTA";
+//            return "tableDOTA";
+            return "dota";
         }
         if (nameGame.equals("wot")) {
-            return "tableWOT";
+//            return "tableWOT";
+            return "wot";
         }
 
         return "";

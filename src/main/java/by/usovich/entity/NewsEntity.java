@@ -33,11 +33,7 @@ public class NewsEntity implements Serializable {
 
     @Column(name = "news_refImage")
     private String _image;
-    private int newsId;
-    private String newsTitel;
-    private String newsContent;
-    private String newsRefImage;
-    private String newsDate;
+
 
     public int get_id() {
         return _id;

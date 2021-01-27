@@ -21,6 +21,7 @@ public class NewsDaoImplement extends CRUDofEntitiesImp implements NewsDaoInterf
     public Logger log = Logger.getLogger(NewsDaoImplement.class);
 
     public List getNewsAtTitel(String titel) {
+
         String postHQL = "FROM NewsEntity WHERE news_titel=:titel";
 
         //titel = "tableDOTA";
