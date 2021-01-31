@@ -34,6 +34,16 @@ public class NewsEntity implements Serializable {
     @Column(name = "news_refImage")
     private String _image;
 
+    public NewsEntity(String _titel, String _content, String _name, String _date, String _image) {
+        this._titel = _titel;
+        this._content = _content;
+        this._name = _name;
+        this._date = _date;
+        this._image = _image;
+    }
+
+    public NewsEntity() {
+    }
 
     public int get_id() {
         return _id;

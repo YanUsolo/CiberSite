@@ -1,6 +1,6 @@
-package by.usovich.dao.IMP;
+package by.usovich.Repository.dao.IMP;
 
-import by.usovich.dao.VideoDaoInterface;
+import by.usovich.Repository.dao.VideoDaoInterface;
 import by.usovich.entity.VideoEntity;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;

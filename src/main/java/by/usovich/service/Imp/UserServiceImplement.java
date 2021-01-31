@@ -1,6 +1,6 @@
 package by.usovich.service.Imp;
 
-import by.usovich.dao.UserDaoInterface;
+import by.usovich.Repository.dao.UserDaoInterface;
 import by.usovich.dto.LoginAndRegDto.RegDto;
 import by.usovich.dto.UserDto;
 import by.usovich.entity.GamesEntity;

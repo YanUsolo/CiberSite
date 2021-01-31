@@ -1,4 +1,4 @@
-package by.usovich.dao;
+package by.usovich.Repository.dao;
 
 import java.util.List;
 import java.util.Map;
@@ -11,6 +11,7 @@ public interface CRUDofEntitiesInterface {
 
     void updateEntity(Object updateEntity);
 
-    List getListEnities(String requestAsHQL, Map<String, String> parameters);
+    void readEntity(long id);
 
+    List getListEntities(String requestAsHQL, Map<String, String> parameters);
 }

@@ -1,6 +1,6 @@
 package by.usovich.service.Imp;
 
-import by.usovich.dao.StreamsDaoInterface;
+import by.usovich.Repository.dao.StreamsDaoInterface;
 import by.usovich.dto.StreamAndVideoDto.StreamDto.StreamDto;
 import by.usovich.dto.StreamAndVideoDto.StreamDto.StreamJsonDto;
 import by.usovich.entity.StreamEntity;

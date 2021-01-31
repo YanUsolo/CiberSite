@@ -1,6 +1,6 @@
-package by.usovich.dao.IMP;
+package by.usovich.Repository.dao.IMP;
 
-import by.usovich.dao.TourneyDaoInterface;
+import by.usovich.Repository.dao.TourneyDaoInterface;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;

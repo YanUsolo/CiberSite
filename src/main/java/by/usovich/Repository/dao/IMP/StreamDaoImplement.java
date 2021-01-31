@@ -1,31 +1,31 @@
-package by.usovich.dao.IMP;
+package by.usovich.Repository.dao.IMP;
 
-import by.usovich.dao.NewsDaoInterface;
-import by.usovich.entity.NewsEntity;
+import by.usovich.Repository.dao.StreamsDaoInterface;
+import by.usovich.entity.StreamEntity;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by yanus on 15.05.2017.
+ * Created by yanus on 8/19/2017.
  */
-@Repository("newsDaoImp")
+@Repository("streamDaoImp")
 //@Transactional
 @Transactional(noRollbackFor = Exception.class)
-public class NewsDaoImplement extends CRUDofEntitiesImp implements NewsDaoInterface {
+public class StreamDaoImplement extends CRUDofEntitiesImp implements StreamsDaoInterface {
 
-    public Logger log = Logger.getLogger(NewsDaoImplement.class);
+    public Logger log = Logger.getLogger(StreamDaoImplement.class);
 
-    public List getNewsAtTitel(String titel) {
+    @Override
+    public List getStreamAtTitle(String titel) {
 
-        String postHQL = "FROM NewsEntity WHERE news_titel=:titel";
+        String postHQL = "FROM StreamEntity WHERE Streams_titel=:titel";
 
         //titel = "tableDOTA";
-        List newsEntityList = null;
+        List postEntity = null;
         org.hibernate.query.Query query = null;
         Session session = null;
 
@@ -34,51 +34,43 @@ public class NewsDaoImplement extends CRUDofEntitiesImp implements NewsDaoInterf
             session = sessionFactory.getCurrentSession();
             query = session.createQuery(postHQL);
             query.setParameter("titel", titel);
-            newsEntityList = query.getResultList();
+            postEntity = query.getResultList();
 
         } catch (Exception e) {
             System.out.println("Exception : " + e);
         }
-
-        if (newsEntityList == null) {
-
-            newsEntityList = new ArrayList();
-        }
-
-
-        return newsEntityList;
+        return postEntity;
     }
 
-    @Override
-    public NewsEntity getNewsById(int id) {
-        System.out.println("DAO(Id : " + id + ")");
-        String postHQL = "FROM NewsEntity WHERE news_id=:id";
+    public StreamEntity getStreamById(int id) {
+        String postHQL = "FROM StreamEntity WHERE streams_id=:id";
 
         //titel = "tableDOTA";
-        List newsEntity = null;
+        List streamEntity = null;
         org.hibernate.query.Query query = null;
         Session session = null;
+
 
         try {
             session = sessionFactory.getCurrentSession();
             query = session.createQuery(postHQL);
             query.setParameter("id", id + "");
-            newsEntity = query.getResultList();
+            streamEntity = query.getResultList();
 
         } catch (Exception e) {
             System.out.println("Exception : " + e);
         }
 
-        if (newsEntity == null) {
+        if (streamEntity == null) {
             return null;
         }
 
-
-        if (newsEntity.size() > 0) {
-            return (NewsEntity) newsEntity.get(0);
+        if (streamEntity.size() > 0) {
+            return (StreamEntity) streamEntity.get(0);
         }
 
         return null;
     }
+
 
 }

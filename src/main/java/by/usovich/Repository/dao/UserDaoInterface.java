@@ -1,4 +1,4 @@
-package by.usovich.dao;
+package by.usovich.Repository.dao;
 
 /**
  * Created by yanus on 7/14/2017.
@@ -17,5 +17,4 @@ public interface UserDaoInterface extends CRUDofEntitiesInterface {
     List getUserEntityByLogin(String login);
 
     Integer getVisitSite();
-
 }

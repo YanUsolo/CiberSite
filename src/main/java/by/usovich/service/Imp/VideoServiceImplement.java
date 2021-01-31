@@ -1,7 +1,7 @@
 package by.usovich.service.Imp;
 
 
-import by.usovich.dao.VideoDaoInterface;
+import by.usovich.Repository.dao.VideoDaoInterface;
 import by.usovich.dto.StreamAndVideoDto.VideoDto.VideoDto;
 import by.usovich.dto.StreamAndVideoDto.VideoDto.VideoJsonDto;
 import by.usovich.entity.VideoEntity;

@@ -1,4 +1,4 @@
-package by.usovich.dao;
+package by.usovich.Repository.dao;
 
 import by.usovich.entity.StreamEntity;
 

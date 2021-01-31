@@ -1,6 +1,6 @@
 package by.usovich.service.Imp;
 
-import by.usovich.dao.TourneyDaoInterface;
+import by.usovich.Repository.dao.TourneyDaoInterface;
 import by.usovich.dto.TourneyDto;
 import by.usovich.dto.TourneyJsonDto;
 import by.usovich.entity.TourneyEntity;

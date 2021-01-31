@@ -1,6 +1,6 @@
-package by.usovich.dao.IMP;
+package by.usovich.Repository.dao.IMP;
 
-import by.usovich.dao.UserDaoInterface;
+import by.usovich.Repository.dao.UserDaoInterface;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;

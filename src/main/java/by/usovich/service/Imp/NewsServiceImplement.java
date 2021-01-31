@@ -1,6 +1,6 @@
 package by.usovich.service.Imp;
 
-import by.usovich.dao.NewsDaoInterface;
+import by.usovich.Repository.dao.NewsDaoInterface;
 import by.usovich.dto.NewsDto.CreateNewsDto;
 import by.usovich.dto.NewsDto.NewsDto;
 import by.usovich.dto.NewsDto.NewsJsonDto;
