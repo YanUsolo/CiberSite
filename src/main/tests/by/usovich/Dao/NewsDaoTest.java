@@ -23,6 +23,9 @@ public class NewsDaoTest {
     String[] arrayTitleTrue;
     String[] arrayTitleFalse;
 
+    int[] arrayUserIdTrue;
+    int[] arrayUserIdfalse;
+
     @Before
     public void setUp_getNewsAtTitel() {
 
@@ -30,23 +33,52 @@ public class NewsDaoTest {
         arrayTitleFalse = new String[]{"css", "wotaF", "parakort", "doka"};
     }
 
+    @Before
+    public void setUp_getNewsById() {
+
+        arrayUserIdTrue = new int[]{2, 3, 1, 4};
+        arrayUserIdfalse = new int[]{100, 500, 1000, 11111};
+    }
+
+
     @Test
     public void getNewsAtTitel_HaveSomeRecordByTitle_Successful() {
 
-        for (String title : arrayTitleTrue) {
+        for (String titel : arrayTitleTrue) {
 
-            assertTrue(newsDaoInterface.getNewsAtTitel(title).size() > 0);
+            assertTrue(newsDaoInterface.getNewsAtTitel(titel).size() > 0);
         }
     }
+
 
     @Test
     public void getNewsAtTitel_HaveSomeRecordByTitle_NotSuccessful() {
 
-        for (String title : arrayTitleFalse) {
+        for (String titel : arrayTitleFalse) {
 
-            assertFalse(newsDaoInterface.getNewsAtTitel(title).size() > 0);
+            assertFalse(newsDaoInterface.getNewsAtTitel(titel).size() > 0);
         }
     }
+
+
+    @Test
+    public void getNewsById_HaveSomeRecordById_Successful() {
+
+        for (int id : arrayUserIdTrue) {
+
+            assertTrue(newsDaoInterface.getNewsById(id).get_id() == id);
+        }
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void getNewsById_HaveSomeRecordById_NotSuccessful() {
+
+        for (int id : arrayUserIdfalse) {
+
+            assertFalse(newsDaoInterface.getNewsById(id).get_id() == id);
+        }
+    }
+
 
 }
 
