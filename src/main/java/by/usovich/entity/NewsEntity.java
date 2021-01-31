@@ -17,7 +17,7 @@ public class NewsEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected int _id;
 
-    @Column(name = "news_titel")
+    @Column(name = "news_title")
     private String _titel;
 
     @Column(name = "news_content")

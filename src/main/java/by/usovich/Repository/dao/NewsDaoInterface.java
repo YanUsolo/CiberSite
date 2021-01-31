@@ -11,6 +11,6 @@ public interface NewsDaoInterface extends CRUDofEntitiesInterface {
 
     List getNewsAtTitel(String nameGameTable);
 
-    NewsEntity getNewsById(int id);
+    NewsEntity getNewsById(long id);
 
 }

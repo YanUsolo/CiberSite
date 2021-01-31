@@ -26,12 +26,14 @@ public class NewsDaoTest {
     int[] arrayUserIdTrue;
     int[] arrayUserIdfalse;
 
+
     @Before
     public void setUp_getNewsAtTitel() {
 
         arrayTitleTrue = new String[]{"cs", "wot", "dota", "paragon"};
         arrayTitleFalse = new String[]{"css", "wotaF", "parakort", "doka"};
     }
+
 
     @Before
     public void setUp_getNewsById() {
@@ -69,6 +71,7 @@ public class NewsDaoTest {
             assertTrue(newsDaoInterface.getNewsById(id).get_id() == id);
         }
     }
+
 
     @Test(expected = NullPointerException.class)
     public void getNewsById_HaveSomeRecordById_NotSuccessful() {

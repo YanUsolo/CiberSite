@@ -11,7 +11,7 @@ public interface CRUDofEntitiesInterface {
 
     void updateEntity(Object updateEntity);
 
-    void readEntity(long id);
+    Object readEntity(Class entityClass, Integer id);
 
     List getListEntities(String requestAsHQL, Map<String, String> parameters);
 }

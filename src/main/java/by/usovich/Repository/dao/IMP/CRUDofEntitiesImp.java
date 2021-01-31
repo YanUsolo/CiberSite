@@ -30,8 +30,8 @@ public abstract class CRUDofEntitiesImp implements CRUDofEntitiesInterface {
         sessionFactory.getCurrentSession().update(updateEntity);
     }
 
-    public void readEntity(long id) {
-        sessionFactory.getCurrentSession().find(Object.class, id);
+    public Object readEntity(Class entityClass, Integer id) {
+        return sessionFactory.getCurrentSession().find(entityClass, id);
     }
 
     public List getListEntities(String requestAsHQL, Map<String, String> parameters) {
