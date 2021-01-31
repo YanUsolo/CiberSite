@@ -5,7 +5,6 @@
 
 .idea/
 target/
-src/main/tests
 
 # Log file
 *.log
