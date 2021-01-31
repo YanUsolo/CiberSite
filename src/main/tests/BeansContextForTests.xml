@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+    <!--<context:component-scan base-package="by.usovich.controllers"></context:component-scan>-->
+    <!--<context:component-scan base-package="by.usovich.service"></context:component-scan>-->
+    <context:component-scan base-package="by.usovich.Repository.dao"></context:component-scan>
+    <context:component-scan base-package="by.usovich.Dao"></context:component-scan>
+
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/cibersite"/>
+        <property name="username" value="YanSoLo"/>
+        <property name="password" value="qwerty123"/>
+    </bean>
+
+
+    <!-- Фабрика, которая будет строить Hibernate-сессии -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="by.usovich"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+            </props>
+        </property>
+
+    </bean>
+
+
+    <!--<import resource="file: /src/main/webapp/WEB-INF/dispatcher-servlet.xml"/>-->
+
+    <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
+    <!-- Менеджер транзакций-->
+    <bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+</beans>
