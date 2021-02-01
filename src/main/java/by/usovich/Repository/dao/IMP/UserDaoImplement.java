@@ -44,7 +44,7 @@ public class UserDaoImplement extends CRUDofEntitiesImp implements UserDaoInterf
         Integer Int = (Integer) query.getOutputParameterValue(1);
 
 
-        return Int;
+        return 0;
     }
 
     //   public Logger log = Logger.getLogger(UserDaoImplement.class);
