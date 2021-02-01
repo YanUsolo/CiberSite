@@ -28,7 +28,7 @@ public class UserDaoTest {
 
 
     @Before
-    public void setUp_getNewsAtTitel() {
+    public void setUp() {
 
         arrayLogin_successful = new String[]{"YanSoLo1", "YanSoLo2", "YanSoLo3", "YanSoLo10"};
         arrayLogin_notSuccessful = new String[]{"lolkek", "bob3546456", "gdfgsdsokjgd", "dijngidnbv"};
