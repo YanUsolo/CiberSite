@@ -33,7 +33,7 @@
         <spring.version>5.2.12.RELEASE</spring.version>
         <hibernate.version>5.4.27.Final</hibernate.version>
         <!--<hibernate.version>5.4.27.Final</hibernate.version>-->
-        <mysql.version>8.0.23</mysql.version>
+        <mysql.version>8.0.28</mysql.version>
         <springSecurity.version>3.1.4.RELEASE</springSecurity.version>
         <javax.servlet>4.0.1</javax.servlet>
         <version>8.0.23</version>
